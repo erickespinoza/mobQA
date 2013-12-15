@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface WelcomeViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *welcomeLabelBig;
 
+@property (strong, nonatomic) PFLogInViewController *logInViewController;
+@property (strong, nonatomic) PFSignUpViewController *signUpViewController;
+- (IBAction)logOut:(id)sender;
 @end

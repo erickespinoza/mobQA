@@ -32,6 +32,9 @@
 		AF36D3EE185DF6C50024B3A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF36D3ED185DF6C50024B3A3 /* Security.framework */; };
 		AF36D3F0185DF6CE0024B3A3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF36D3EF185DF6CE0024B3A3 /* StoreKit.framework */; };
 		AF36D3F2185DF6DA0024B3A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF36D3F1185DF6DA0024B3A3 /* SystemConfiguration.framework */; };
+		AF36D3F5185E04CA0024B3A3 /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36D3F4185E04CA0024B3A3 /* URLViewController.m */; };
+		AF36D3FA185E14DE0024B3A3 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36D3F9185E14DE0024B3A3 /* EditViewController.m */; };
+		AF36D403185E32A50024B3A3 /* EEWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF36D402185E32A50024B3A3 /* EEWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,12 @@
 		AF36D3ED185DF6C50024B3A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AF36D3EF185DF6CE0024B3A3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AF36D3F1185DF6DA0024B3A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AF36D3F3185E04CA0024B3A3 /* URLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLViewController.h; sourceTree = "<group>"; };
+		AF36D3F4185E04CA0024B3A3 /* URLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLViewController.m; sourceTree = "<group>"; };
+		AF36D3F8185E14DE0024B3A3 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		AF36D3F9185E14DE0024B3A3 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		AF36D401185E32A50024B3A3 /* EEWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEWebViewController.h; sourceTree = "<group>"; };
+		AF36D402185E32A50024B3A3 /* EEWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,12 +163,10 @@
 		AF36D3AD185DF23C0024B3A3 /* MobQA */ = {
 			isa = PBXGroup;
 			children = (
-				AF36D3B6185DF23C0024B3A3 /* WelcomeAppDelegate.h */,
-				AF36D3B7185DF23C0024B3A3 /* WelcomeAppDelegate.m */,
+				AF36D3F7185E070E0024B3A3 /* URLs */,
+				AF36D3F6185E06EE0024B3A3 /* Welcome */,
 				AF36D3B9185DF23C0024B3A3 /* Main_iPhone.storyboard */,
 				AF36D3BC185DF23C0024B3A3 /* Main_iPad.storyboard */,
-				AF36D3BF185DF23C0024B3A3 /* WelcomeViewController.h */,
-				AF36D3C0185DF23C0024B3A3 /* WelcomeViewController.m */,
 				AF36D3C2185DF23C0024B3A3 /* Images.xcassets */,
 				AF36D3AE185DF23C0024B3A3 /* Supporting Files */,
 			);
@@ -193,6 +200,30 @@
 				AF36D3D2185DF23C0024B3A3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF36D3F6185E06EE0024B3A3 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				AF36D3B6185DF23C0024B3A3 /* WelcomeAppDelegate.h */,
+				AF36D3B7185DF23C0024B3A3 /* WelcomeAppDelegate.m */,
+				AF36D3BF185DF23C0024B3A3 /* WelcomeViewController.h */,
+				AF36D3C0185DF23C0024B3A3 /* WelcomeViewController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		AF36D3F7185E070E0024B3A3 /* URLs */ = {
+			isa = PBXGroup;
+			children = (
+				AF36D3F3185E04CA0024B3A3 /* URLViewController.h */,
+				AF36D3F4185E04CA0024B3A3 /* URLViewController.m */,
+				AF36D3F8185E14DE0024B3A3 /* EditViewController.h */,
+				AF36D3F9185E14DE0024B3A3 /* EditViewController.m */,
+				AF36D401185E32A50024B3A3 /* EEWebViewController.h */,
+				AF36D402185E32A50024B3A3 /* EEWebViewController.m */,
+			);
+			name = URLs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,9 +328,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF36D3F5185E04CA0024B3A3 /* URLViewController.m in Sources */,
 				AF36D3B4185DF23C0024B3A3 /* main.m in Sources */,
 				AF36D3B8185DF23C0024B3A3 /* WelcomeAppDelegate.m in Sources */,
+				AF36D403185E32A50024B3A3 /* EEWebViewController.m in Sources */,
 				AF36D3C1185DF23C0024B3A3 /* WelcomeViewController.m in Sources */,
+				AF36D3FA185E14DE0024B3A3 /* EditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
