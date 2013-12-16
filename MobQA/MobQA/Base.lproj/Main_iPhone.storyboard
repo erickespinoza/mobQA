@@ -186,6 +186,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bFy-B6-UWm">
+                                <rect key="frame" x="142" y="208" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S8-8E-Zwp">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +220,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hfs-U5-jcL"/>
-                                    <barButtonItem systemItem="camera" id="evX-1Q-u9m"/>
+                                    <barButtonItem systemItem="camera" id="evX-1Q-u9m">
+                                        <connections>
+                                            <action selector="Screenshot:" destination="qsz-S4-X8r" id="uwX-in-0Sa"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
@@ -226,22 +234,85 @@
                         <constraints>
                             <constraint firstItem="4S8-8E-Zwp" firstAttribute="top" secondItem="wAQ-Es-fKX" secondAttribute="top" constant="64" id="07P-gx-bNf"/>
                             <constraint firstItem="4Lg-E5-aUU" firstAttribute="leading" secondItem="wAQ-Es-fKX" secondAttribute="leading" id="0cm-PQ-Zqi"/>
+                            <constraint firstItem="bFy-B6-UWm" firstAttribute="leading" secondItem="wAQ-Es-fKX" secondAttribute="leading" constant="142" id="7SE-am-oh7"/>
                             <constraint firstItem="4S8-8E-Zwp" firstAttribute="leading" secondItem="wAQ-Es-fKX" secondAttribute="leading" id="7hy-0P-qxe"/>
                             <constraint firstAttribute="bottom" secondItem="4Lg-E5-aUU" secondAttribute="bottom" id="8x4-iO-AyU"/>
                             <constraint firstItem="4Lg-E5-aUU" firstAttribute="leading" secondItem="wAQ-Es-fKX" secondAttribute="leading" id="AwJ-qf-54D"/>
                             <constraint firstAttribute="trailing" secondItem="4Lg-E5-aUU" secondAttribute="trailing" id="BOC-pK-uT5"/>
                             <constraint firstAttribute="bottom" secondItem="4S8-8E-Zwp" secondAttribute="bottom" constant="44" id="CLh-xO-38V"/>
                             <constraint firstAttribute="trailing" secondItem="4S8-8E-Zwp" secondAttribute="trailing" id="bXc-8w-BBK"/>
+                            <constraint firstAttribute="trailing" secondItem="bFy-B6-UWm" secondAttribute="trailing" constant="141" id="rbq-CX-4pE"/>
+                            <constraint firstItem="bFy-B6-UWm" firstAttribute="top" secondItem="wAQ-Es-fKX" secondAttribute="top" constant="208" id="uUH-9v-i8m"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3gK-u4-AlA"/>
+                    <navigationItem key="navigationItem" id="3gK-u4-AlA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="play" id="d8U-DR-BLQ">
+                            <connections>
+                                <segue destination="G2h-Ds-LAI" kind="push" id="ms4-XS-LDF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="bFy-B6-UWm" id="WCb-db-4g9"/>
                         <outlet property="webView" destination="4S8-8E-Zwp" id="B21-QJ-qRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vat-vF-ELL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1589" y="72"/>
+        </scene>
+        <!--Image Selector View Controller - Select Your Image-->
+        <scene sceneID="AOQ-JI-VQ0">
+            <objects>
+                <viewController id="G2h-Ds-LAI" customClass="ImageSelectorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qo9-1q-3Ys"/>
+                        <viewControllerLayoutGuide type="bottom" id="pqd-Hq-J0v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fif-xk-rOo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-X5-8TP">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icd-yo-YQo">
+                                <rect key="frame" x="93" y="532" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GdG-mY-f4r"/>
+                                    <constraint firstAttribute="width" constant="134" id="hP3-Dc-iHn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Choose Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImage:" destination="G2h-Ds-LAI" eventType="touchUpInside" id="9u2-hP-RHi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hbc-X5-8TP" firstAttribute="top" secondItem="Fif-xk-rOo" secondAttribute="top" constant="64" id="4Ni-fB-kdl"/>
+                            <constraint firstItem="hbc-X5-8TP" firstAttribute="leading" secondItem="Fif-xk-rOo" secondAttribute="leading" id="OkK-m7-vNl"/>
+                            <constraint firstAttribute="bottom" secondItem="Icd-yo-YQo" secondAttribute="bottom" constant="6" id="f3g-rm-O3W"/>
+                            <constraint firstAttribute="bottom" secondItem="hbc-X5-8TP" secondAttribute="bottom" constant="44" id="kTB-ar-7fM"/>
+                            <constraint firstAttribute="trailing" secondItem="Icd-yo-YQo" secondAttribute="trailing" constant="93" id="qpF-g6-YJ0"/>
+                            <constraint firstAttribute="trailing" secondItem="hbc-X5-8TP" secondAttribute="trailing" id="rUg-E7-XU3"/>
+                            <constraint firstItem="Icd-yo-YQo" firstAttribute="leading" secondItem="Fif-xk-rOo" secondAttribute="leading" constant="93" id="xjA-AX-iXv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Your Image" id="DUU-2N-av6"/>
+                    <connections>
+                        <outlet property="imageView" destination="hbc-X5-8TP" id="iXX-td-DD0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HAJ-mF-ZwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="72"/>
         </scene>
         <!--Edit View Controller - Add New URL-->
         <scene sceneID="0lt-JW-wW7">

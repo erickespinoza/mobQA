@@ -270,6 +270,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="KUt-sJ-ELE">
+                                <rect key="frame" x="374" y="468" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="6aw-aI-uMe">
                                 <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -277,13 +282,29 @@
                                     <constraint firstAttribute="height" constant="44" id="dG6-Og-gsE"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem systemItem="rewind" id="WZF-C8-K5W"/>
+                                    <barButtonItem systemItem="rewind" id="WZF-C8-K5W">
+                                        <connections>
+                                            <action selector="goBack" destination="wwv-iR-jl5" id="dGq-xG-yEy"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FCf-hJ-Brb"/>
-                                    <barButtonItem systemItem="fastForward" id="Zy5-8o-yg2"/>
+                                    <barButtonItem systemItem="fastForward" id="Zy5-8o-yg2">
+                                        <connections>
+                                            <action selector="goForward" destination="wwv-iR-jl5" id="auJ-vN-LdI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="vLb-Ls-mQH"/>
-                                    <barButtonItem systemItem="refresh" id="2zK-Xa-qP4"/>
+                                    <barButtonItem systemItem="refresh" id="2zK-Xa-qP4">
+                                        <connections>
+                                            <action selector="reload" destination="wwv-iR-jl5" id="cgC-YA-NXx"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="9PQ-B9-Epo"/>
-                                    <barButtonItem systemItem="camera" id="Iga-EL-7tI"/>
+                                    <barButtonItem systemItem="camera" id="Iga-EL-7tI">
+                                        <connections>
+                                            <action selector="Screenshot:" destination="myF-M1-gcT" id="4Cd-zK-AAO"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
@@ -299,20 +320,70 @@
                             <constraint firstAttribute="trailing" secondItem="wwv-iR-jl5" secondAttribute="trailing" id="3Uy-zZ-a31"/>
                             <constraint firstAttribute="trailing" secondItem="6aw-aI-uMe" secondAttribute="trailing" id="7Lt-QL-ZXw"/>
                             <constraint firstItem="6aw-aI-uMe" firstAttribute="leading" secondItem="nIc-Kn-sCe" secondAttribute="leading" id="LRX-AI-EcW"/>
+                            <constraint firstAttribute="trailing" secondItem="KUt-sJ-ELE" secondAttribute="trailing" constant="374" id="OVQ-Io-m8i"/>
                             <constraint firstItem="wwv-iR-jl5" firstAttribute="top" secondItem="nIc-Kn-sCe" secondAttribute="top" constant="64" id="OdI-2o-c8N"/>
                             <constraint firstAttribute="bottom" secondItem="wwv-iR-jl5" secondAttribute="bottom" constant="44" id="RB2-Gb-229"/>
                             <constraint firstAttribute="bottom" secondItem="6aw-aI-uMe" secondAttribute="bottom" id="Yfo-1y-nvW"/>
+                            <constraint firstItem="KUt-sJ-ELE" firstAttribute="leading" secondItem="nIc-Kn-sCe" secondAttribute="leading" constant="374" id="dBk-gV-BS6"/>
                             <constraint firstItem="wwv-iR-jl5" firstAttribute="leading" secondItem="nIc-Kn-sCe" secondAttribute="leading" id="jf4-Xx-bD7"/>
+                            <constraint firstItem="KUt-sJ-ELE" firstAttribute="top" secondItem="nIc-Kn-sCe" secondAttribute="top" constant="468" id="mvz-Cp-MLc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fTw-iF-p89"/>
+                    <navigationItem key="navigationItem" id="fTw-iF-p89">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="play" id="veP-kP-rFE">
+                            <connections>
+                                <segue destination="U7s-3B-lwM" kind="push" id="nq5-sV-nbu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="KUt-sJ-ELE" id="0XI-nz-Wqd"/>
                         <outlet property="webView" destination="wwv-iR-jl5" id="o9N-NH-ud8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3w4-JO-Acq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2856" y="-156"/>
+        </scene>
+        <!--Image Selector View Controller - Select Your Image-->
+        <scene sceneID="Blb-YV-dDh">
+            <objects>
+                <viewController id="U7s-3B-lwM" customClass="ImageSelectorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nUm-KB-dw0"/>
+                        <viewControllerLayoutGuide type="bottom" id="n28-oO-MVr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rzA-au-Cd6">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tEi-rs-std">
+                                <rect key="frame" x="0.0" y="64" width="768" height="916"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-YX-qdl">
+                                <rect key="frame" x="321" y="988" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Choose Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImage:" destination="U7s-3B-lwM" eventType="touchUpInside" id="Xy0-P3-Omd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Your Image" id="VY9-ih-pbg"/>
+                    <connections>
+                        <outlet property="imageView" destination="tEi-rs-std" id="Bv5-gg-cUi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qhy-w9-EkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3752" y="-150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kBd-FC-WVf">
