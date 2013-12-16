@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface URLViewController : UITableViewController
+@interface URLViewController : UITableViewController<UISearchBarDelegate>
 @property (strong, nonatomic) NSMutableArray *urlElements;
+@property (strong, nonatomic) NSMutableArray *searchElements;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @end

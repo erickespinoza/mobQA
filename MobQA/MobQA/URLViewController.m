@@ -35,7 +35,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.urlElements = [[NSMutableArray alloc]init];
-    
+    self.searchElements = [[NSMutableArray alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:@"UrlToReview"];
     PFUser *user = [PFUser currentUser];
     [query whereKey:@"user" equalTo:user];
@@ -62,6 +62,18 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Search Code
+
+-(void) SearchContent{
+    self.searchElements = nil;
+    NSPredicate *resultsPredicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",self.searchBar.text];
+    self.searchElements = [[self.urlElements filteredArrayUsingPredicate:resultsPredicate] mutableCopy];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [self SearchContent];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -74,21 +86,38 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    // Return the number of rows in the section.
-    return self.urlElements.count;
+    if (tableView == self.tableView) {
+        return self.urlElements.count;
+    }else{
+        [self SearchContent];
+        return self.searchElements.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ((indexPath.row%2)==0) {
         CellIdentifier = [NSString stringWithFormat:@"%@%@",CellIdentifier,@"Even"];
     }
-    PFObject *url = [self.urlElements objectAtIndex:indexPath.row];
-    cell.textLabel.text = url[@"name"];
-    cell.detailTextLabel.text = url[@"url"];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    if (tableView == self.tableView) {
+        PFObject *url = [self.urlElements objectAtIndex:indexPath.row];
+        cell.textLabel.text = url[@"name"];
+        cell.detailTextLabel.text = url[@"url"];
+    }else{
+        PFObject *url = [self.searchElements objectAtIndex:indexPath.row];
+        cell.textLabel.text = url[@"name"];
+        cell.detailTextLabel.text = url[@"url"];
+    }
+    
     
     return cell;
 }
